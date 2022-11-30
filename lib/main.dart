@@ -77,15 +77,10 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(child: StationWidget(station: rootdata.stations[0])),
-                const VerticalDivider(
-                  indent: 0,
-                  endIndent: 0,
-                  width: 2,
-                  thickness: 2,
-                  color: Colors.grey,
+                Flexible(
+                  flex: 1,
+                  child: StationWidget(station: rootdata.stations[0]),
                 ),
-                Flexible(child: StationWidget(station: rootdata.stations[1])),
                 const VerticalDivider(
                   indent: 0,
                   endIndent: 0,
@@ -94,10 +89,22 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                   color: Colors.grey,
                 ),
                 Flexible(
+                  flex: 1,
+                  child: StationWidget(station: rootdata.stations[1]),
+                ),
+                const VerticalDivider(
+                  indent: 0,
+                  endIndent: 0,
+                  width: 2,
+                  thickness: 2,
+                  color: Colors.grey,
+                ),
+                Flexible(
+                  flex: 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      StationWidget(station: rootdata.stations[2]),
+                      Flexible(child: StationWidget(station: rootdata.stations[2])),
                       const Divider(
                         endIndent: 0,
                         indent: 0,
@@ -105,8 +112,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                         thickness: 2,
                         height: 2,
                       ),
-                      StationWidget(station: rootdata.stations[3]),
-                      Container(),
+                      Flexible(child: StationWidget(station: rootdata.stations[3])),
                     ],
                   ),
                 )
@@ -148,7 +154,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
       ],
     );
   }
-  return Text('Ein Fehler ist aufgetreten!');
+  return const Text('Ein Fehler ist aufgetreten!');
 }
 
 class StationWidget extends StatelessWidget {
@@ -162,17 +168,18 @@ class StationWidget extends StatelessWidget {
       columns: <DataColumn>[
         const DataColumn(
           label: Center(
-            child: Text(''
-            ),
+            child: Text(''),
           ),
-        ),        DataColumn(
+        ),
+        DataColumn(
           label: Center(
             child: Text(
               station.name,
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
-        ),        DataColumn(
+        ),
+        DataColumn(
           label: Center(
             child: Text(
               'min',
@@ -184,21 +191,47 @@ class StationWidget extends StatelessWidget {
       rows: List<DataRow>.generate(
         station.departures.length,
         (int index) => DataRow(
-          /// color: MaterialStateProperty.resolveWith<Color?>(
-          ///         (Set<MaterialState> states) {
-          ///       // All rows will have the same selected color.
-          ///       if (states.contains(MaterialState.selected)) {
-          ///         return Theme.of(context).colorScheme.primary.withOpacity(0.08);
-          ///       }
-          ///       // Even rows will have a grey color.
-          ///       if (index.isEven) {
-          ///         return Colors.grey.withOpacity(0.3);
-          ///       }
-          ///       return null; // Use default value for other states and odd rows.
-          ///     }),
-          cells: <DataCell>[DataCell(Text(station.departures[index].label ?? "")),DataCell(Text(station.departures[index].destination)),DataCell(Text(station.departures[index].times.toString()))],
+          color: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+            // Even rows will have a grey color.
+            if (index.isEven) {
+              return Colors.lightBlue.withOpacity(0.3);
+            }
+            return null; // Use default value for other states and odd rows.
+          }),
+          cells: <DataCell>[
+            DataCell(Text(station.departures[index].label ?? "")),
+            DataCell(Text(station.departures[index].destination)),
+            DataCell(DepartureTimeWidget(
+                times: station.departures[index].times, onTime: station.departures[index].onTime))
+          ],
         ),
       ),
+    );
+  }
+}
+
+class DepartureTimeWidget extends StatelessWidget {
+  const DepartureTimeWidget({super.key, required this.times, required this.onTime});
+
+  final List<int> times;
+  final Map<int, bool> onTime;
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> timeWidgets = [];
+    for (int time in times) {
+      timeWidgets.add(Text(
+        time.toString(),
+        style: TextStyle(color: ((onTime[time] ?? true) ? Colors.black : Colors.red)),
+      ));
+    }
+    print('len: ${timeWidgets.length}');
+    for (int i = 1; i < timeWidgets.length; i += 2) {
+      timeWidgets.insert(i, const Text(' | '));
+    }
+    print(timeWidgets);
+    return Row(
+      children: timeWidgets,
     );
   }
 }
