@@ -1,364 +1,350 @@
 {
   "entries": 7,
   "stations": {
-    "Olympiazentrum": {
-      "departures": [
-        {
-          "destination": "Moosach",
-          "label": "U3",
-          "transportType": "sub",
-          "times": [
-            {
-              "minutesTillDeparture": 2,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 11,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Fürstenried West",
-          "label": "U3",
-          "transportType": "sub",
-          "times": [
-            {
-              "minutesTillDeparture": 3,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 14,
-              "onTime": false
-            }
-          ]
-        },
-        {
-          "destination": "Feldmoching Bhf.",
-          "label": "173",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 6,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 25,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Petuelring",
-          "label": "173",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 8,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 28,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Kieferngarten",
-          "label": "180",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 9,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 29,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Berduxstraße",
-          "label": "180",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 15,
-              "onTime": true
-            }
-          ]
-        }
-      ]
-    },
-    "Anhalter Platz": {
-      "departures": [
-        {
-          "destination": "Alte Heide",
-          "label": "X35",
-          "transportType": "xbus",
-          "times": [
-            {
-              "minutesTillDeparture": 1,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 21,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Moosach Bhf.",
-          "label": "X35",
-          "transportType": "xbus",
-          "times": [
-            {
-              "minutesTillDeparture": 4,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 23,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Alte Heide",
-          "label": "X36",
-          "transportType": "xbus",
-          "times": [
-            {
-              "minutesTillDeparture": 4,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 24,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Allach Bhf.",
-          "label": "X36",
-          "transportType": "xbus",
-          "times": [
-            {
-              "minutesTillDeparture": 7,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 26,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Johanneskirchen",
-          "label": "50",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 8,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 27,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Dessauerstaße",
-          "label": "50",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 9,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 29,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Kieferngarten",
-          "label": "180",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 12,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Berduxstraße",
-          "label": "180",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 14,
-              "onTime": true
-            }
-          ]
-        }
-      ]
-    },
-    "Petuelring": {
-      "departures": [
-        {
-          "destination": "Fürstenried West",
-          "label": "U3",
-          "transportType": "sub",
-          "times": [
-            {
-              "minutesTillDeparture": 3,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 13,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Sendlinger Tor",
-          "label": "27",
-          "transportType": "tram",
-          "times": [
-            {
-              "minutesTillDeparture": 7,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 16,
-              "onTime": true
-            }
-          ]
-        }
-      ]
-    },
-    "Curt-Mezger-Platz": {
-      "departures": [
-        {
-          "destination": "Petuelring",
-          "label": "177",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 3,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 21,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Studentenstadt",
-          "label": "177",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 6,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 26,
-              "onTime": true
-            }
-          ]
-        }
-      ]
-    },
-    "Pendelbusse ": {
-      "departures": [
-        {
-          "destination": "Freimann",
-          "transportType": "bmwbus",
-          "times": [
-            {
-              "minutesTillDeparture": 17,
-              "onTime": false
-            }
-          ]
-        },
-        {
-          "destination": "Taunusstraße",
-          "transportType": "bmwbus",
-          "times": [
-            {
-              "minutesTillDeparture": 15,
-              "onTime": true
-            }
-          ]
-        }
-      ]
-    },
-    "Lüneburger Str. ": {
-      "departures": [
-        {
-          "destination": "Freimann Hölzl",
-          "label": "178",
-          "transportType": "bus",
-          "times": [
-            {
-              "minutesTillDeparture": 4,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 22,
-              "onTime": true
-            }
-          ]
-        }
-      ]
-    },
-    "Milbertshofen ": {
-      "departures": [
-        {
-          "destination": "Feldmoching",
-          "label": "U2",
-          "transportType": "sub",
-          "times": [
-            {
-              "minutesTillDeparture": 1,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 5,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 11,
-              "onTime": true
-            }
-          ]
-        },
-        {
-          "destination": "Messestadt Ost",
-          "label": "U2",
-          "transportType": "sub",
-          "times": [
-            {
-              "minutesTillDeparture": 5,
-              "onTime": false
-            },
-            {
-              "minutesTillDeparture": 7,
-              "onTime": true
-            },
-            {
-              "minutesTillDeparture": 13,
-              "onTime": true
-            }
-          ]
-        }
-      ]
-    }
+    "Olympiazentrum": [
+      {
+        "destination": "Moosach",
+        "label": "U3",
+        "transportType": "sub",
+        "times": [
+          {
+            "minutesTillDeparture": 2,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 11,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Fürstenried West",
+        "label": "U3",
+        "transportType": "sub",
+        "times": [
+          {
+            "minutesTillDeparture": 3,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 14,
+            "onTime": false
+          }
+        ]
+      },
+      {
+        "destination": "Feldmoching Bhf.",
+        "label": "173",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 6,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 25,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Petuelring",
+        "label": "173",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 8,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 28,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Kieferngarten",
+        "label": "180",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 9,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 29,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Berduxstraße",
+        "label": "180",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 15,
+            "onTime": true
+          }
+        ]
+      }
+    ],
+    "Anhalter Platz": [
+      {
+        "destination": "Alte Heide",
+        "label": "X35",
+        "transportType": "xbus",
+        "times": [
+          {
+            "minutesTillDeparture": 1,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 21,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Moosach Bhf.",
+        "label": "X35",
+        "transportType": "xbus",
+        "times": [
+          {
+            "minutesTillDeparture": 4,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 23,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Alte Heide",
+        "label": "X36",
+        "transportType": "xbus",
+        "times": [
+          {
+            "minutesTillDeparture": 4,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 24,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Allach Bhf.",
+        "label": "X36",
+        "transportType": "xbus",
+        "times": [
+          {
+            "minutesTillDeparture": 7,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 26,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Johanneskirchen",
+        "label": "50",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 8,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 27,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Dessauerstaße",
+        "label": "50",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 9,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 29,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Kieferngarten",
+        "label": "180",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 12,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Berduxstraße",
+        "label": "180",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 14,
+            "onTime": true
+          }
+        ]
+      }
+    ],
+    "Petuelring": [
+      {
+        "destination": "Fürstenried West",
+        "label": "U3",
+        "transportType": "sub",
+        "times": [
+          {
+            "minutesTillDeparture": 3,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 13,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Sendlinger Tor",
+        "label": "27",
+        "transportType": "tram",
+        "times": [
+          {
+            "minutesTillDeparture": 7,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 16,
+            "onTime": true
+          }
+        ]
+      }
+    ],
+    "Curt-Mezger-Platz": [
+      {
+        "destination": "Petuelring",
+        "label": "177",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 3,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 21,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Studentenstadt",
+        "label": "177",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 6,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 26,
+            "onTime": true
+          }
+        ]
+      }
+    ],
+    "Pendelbusse ": [
+      {
+        "destination": "Freimann",
+        "transportType": "bmwbus",
+        "times": [
+          {
+            "minutesTillDeparture": 17,
+            "onTime": false
+          }
+        ]
+      },
+      {
+        "destination": "Taunusstraße",
+        "transportType": "bmwbus",
+        "times": [
+          {
+            "minutesTillDeparture": 15,
+            "onTime": true
+          }
+        ]
+      }
+    ],
+    "Lüneburger Str. ": [
+      {
+        "destination": "Freimann Hölzl",
+        "label": "178",
+        "transportType": "bus",
+        "times": [
+          {
+            "minutesTillDeparture": 4,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 22,
+            "onTime": true
+          }
+        ]
+      }
+    ],
+    "Milbertshofen ": [
+      {
+        "destination": "Feldmoching",
+        "label": "U2",
+        "transportType": "sub",
+        "times": [
+          {
+            "minutesTillDeparture": 1,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 5,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 11,
+            "onTime": true
+          }
+        ]
+      },
+      {
+        "destination": "Messestadt Ost",
+        "label": "U2",
+        "transportType": "sub",
+        "times": [
+          {
+            "minutesTillDeparture": 5,
+            "onTime": false
+          },
+          {
+            "minutesTillDeparture": 7,
+            "onTime": true
+          },
+          {
+            "minutesTillDeparture": 13,
+            "onTime": true
+          }
+        ]
+      }
+    ]
   }
 }
