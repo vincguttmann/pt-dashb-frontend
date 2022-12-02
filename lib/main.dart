@@ -9,11 +9,9 @@ Stream<RootData> fetchData() async* {
   while (true) {
     String githubURL =
         'https://raw.githubusercontent.com/vincguttmann/pt-dashb-frontend/master/assets/station.json';
-    print('getting URL now');
     Response response = await http.get(Uri.parse(githubURL));
 
     if (response.statusCode == 200) {
-      print('response 200!');
       // If the server did return a 200 OK response,
       // then parse the JSON.
       yield RootData.fromString(response.body);
@@ -53,8 +51,6 @@ class _MyAppState extends State<MyApp> {
           stream: fetchData(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              print('new build triggered!');
-              print(snapshot.data!.stations[0].departures[0].destination);
               return buildLayout(context, snapshot.data!);
             } else if (snapshot.hasError) {
               return Text('${snapshot.error}');
@@ -69,18 +65,20 @@ class _MyAppState extends State<MyApp> {
 
 Widget buildLayout(BuildContext context, RootData rootdata) {
   if (rootdata.stations.length == 7) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Expanded(
-          child: IntrinsicHeight(
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 3 * 1.75 - 1,
+            width: MediaQuery.of(context).size.width,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Flexible(
-                  flex: 1,
-                  child: StationWidget(station: rootdata.stations[0]),
-                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width / 3 - 4,
+                    child: StationWidget(station: rootdata.stations[0])),
                 const VerticalDivider(
                   indent: 0,
                   endIndent: 0,
@@ -88,8 +86,8 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                   thickness: 2,
                   color: Colors.grey,
                 ),
-                Flexible(
-                  flex: 1,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3 - 4,
                   child: StationWidget(station: rootdata.stations[1]),
                 ),
                 const VerticalDivider(
@@ -99,12 +97,15 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                   thickness: 2,
                   color: Colors.grey,
                 ),
-                Flexible(
-                  flex: 1,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3 - 4,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Flexible(child: StationWidget(station: rootdata.stations[2])),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height / 3 * 1.75 / 2,
+                          width: MediaQuery.of(context).size.width / 3 - 4,
+                          child: StationWidget(station: rootdata.stations[2])),
                       const Divider(
                         endIndent: 0,
                         indent: 0,
@@ -112,46 +113,57 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                         thickness: 2,
                         height: 2,
                       ),
-                      Flexible(child: StationWidget(station: rootdata.stations[3])),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height / 3 * 1.75 / 2 - 3,
+                          width: MediaQuery.of(context).size.width / 3 - 4,
+                          child: StationWidget(station: rootdata.stations[3])),
                     ],
                   ),
                 )
               ],
             ),
           ),
-        ),
-        const Divider(
-          endIndent: 0,
-          indent: 0,
-          color: Colors.grey,
-          thickness: 2,
-          height: 2,
-        ),
-        IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(child: StationWidget(station: rootdata.stations[4])),
-              const VerticalDivider(
-                indent: 0,
-                endIndent: 0,
-                width: 2,
-                thickness: 2,
-                color: Colors.grey,
-              ),
-              Flexible(child: StationWidget(station: rootdata.stations[5])),
-              const VerticalDivider(
-                indent: 0,
-                endIndent: 0,
-                width: 2,
-                thickness: 2,
-                color: Colors.grey,
-              ),
-              Flexible(child: StationWidget(station: rootdata.stations[6])),
-            ],
+          const Divider(
+            endIndent: 0,
+            indent: 0,
+            color: Colors.grey,
+            thickness: 2,
+            height: 2,
           ),
-        ),
-      ],
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 3 * 1.25 - 1,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                    width: MediaQuery.of(context).size.width / 3 - 4,
+                    child: StationWidget(station: rootdata.stations[4])),
+                const VerticalDivider(
+                  indent: 0,
+                  endIndent: 0,
+                  width: 2,
+                  thickness: 2,
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width / 3 - 4,
+                    child: StationWidget(station: rootdata.stations[5])),
+                const VerticalDivider(
+                  indent: 0,
+                  endIndent: 0,
+                  width: 2,
+                  thickness: 2,
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                    width: MediaQuery.of(context).size.width / 3 - 4,
+                    child: StationWidget(station: rootdata.stations[6])),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
   return const Text('Ein Fehler ist aufgetreten!');
@@ -166,16 +178,19 @@ class StationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataTable(
       columns: <DataColumn>[
-        const DataColumn(
+        DataColumn(
           label: Center(
-            child: Text(''),
+            child: Text(
+              'min',
+              style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white),
+            ),
           ),
         ),
         DataColumn(
           label: Center(
             child: Text(
               station.name,
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -183,7 +198,7 @@ class StationWidget extends StatelessWidget {
           label: Center(
             child: Text(
               'min',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headline5,
             ),
           ),
         ),
@@ -199,8 +214,8 @@ class StationWidget extends StatelessWidget {
             return null; // Use default value for other states and odd rows.
           }),
           cells: <DataCell>[
-            DataCell(Text(station.departures[index].label ?? "")),
-            DataCell(Text(station.departures[index].destination)),
+            DataCell(Text(station.departures[index].label ?? "", style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),)),
+            DataCell(Text(station.departures[index].destination, style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),)),
             DataCell(DepartureTimeWidget(
                 times: station.departures[index].times, onTime: station.departures[index].onTime))
           ],
@@ -222,14 +237,12 @@ class DepartureTimeWidget extends StatelessWidget {
     for (int time in times) {
       timeWidgets.add(Text(
         time.toString(),
-        style: TextStyle(color: ((onTime[time] ?? true) ? Colors.black : Colors.red)),
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: ((onTime[time] ?? true) ? Colors.black : Colors.red)),
       ));
     }
-    print('len: ${timeWidgets.length}');
     for (int i = 1; i < timeWidgets.length; i += 2) {
-      timeWidgets.insert(i, const Text(' | '));
+      timeWidgets.insert(i, Text(' | ', style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),));
     }
-    print(timeWidgets);
     return Row(
       children: timeWidgets,
     );

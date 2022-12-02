@@ -39,7 +39,8 @@ class Station {
 
   factory Station.fromJson(Map<String, dynamic> json, String name) {
     List<Departure> departures = [];
-    for (Map<String, dynamic> departure in (json['departures'] as List)) {
+    print(json);
+    for (Map<String, dynamic> departure in (json as List)) {
       List<int> times = [];
       Map<int, bool> onTime = {};
       for (var departureTime in (departure['times'] as List)) {
