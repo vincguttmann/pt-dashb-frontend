@@ -181,7 +181,7 @@ class StationWidget extends StatelessWidget {
         DataColumn(
           label: Center(
             child: Text(
-              'min',
+              '   ',
               style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white),
             ),
           ),
@@ -190,7 +190,10 @@ class StationWidget extends StatelessWidget {
           label: Center(
             child: Text(
               station.name,
-              style: Theme.of(context).textTheme.headline4!.copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4!
+                  .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -203,26 +206,38 @@ class StationWidget extends StatelessWidget {
           ),
         ),
       ],
-      rows: List<DataRow>.generate(
-        station.departures.length,
-        (int index) => DataRow(
-          color: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            // Even rows will have a grey color.
-            if (index.isEven) {
-              return Colors.lightBlue.withOpacity(0.3);
-            }
-            return null; // Use default value for other states and odd rows.
-          }),
-          cells: <DataCell>[
-            DataCell(Text(station.departures[index].label ?? "", style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),)),
-            DataCell(Text(station.departures[index].destination, style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),)),
-            DataCell(DepartureTimeWidget(
-                times: station.departures[index].times, onTime: station.departures[index].onTime))
-          ],
-        ),
-      ),
+      rows: getList(context, station),
     );
   }
+}
+
+List<DataRow> getList(BuildContext context, Station station) {
+  List<DataRow> data = List<DataRow>.generate(
+    station.departures.length,
+    (int index) => DataRow(
+      color: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+        // Even rows will have a grey color.
+        if (index.isEven) {
+          return Colors.lightBlue.withOpacity(0.3);
+        }
+        return null; // Use default value for other states and odd rows.
+      }),
+      cells: <DataCell>[
+        DataCell(Text(
+          station.departures[index].label ?? "",
+          style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),
+        )),
+        DataCell(Text(
+          station.departures[index].destination,
+          style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),
+        )),
+        DataCell(DepartureTimeWidget(
+            times: station.departures[index].times, onTime: station.departures[index].onTime))
+      ],
+    ),
+  );
+  data.add(const DataRow(cells: <DataCell>[DataCell(Text("")), DataCell(Text("")), DataCell(Text(""))]));
+  return data;
 }
 
 class DepartureTimeWidget extends StatelessWidget {
@@ -237,11 +252,19 @@ class DepartureTimeWidget extends StatelessWidget {
     for (int time in times) {
       timeWidgets.add(Text(
         time.toString(),
-        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: ((onTime[time] ?? true) ? Colors.black : Colors.red)),
+        style: Theme.of(context)
+            .textTheme
+            .headlineMedium!
+            .copyWith(color: ((onTime[time] ?? true) ? Colors.black : Colors.red)),
       ));
     }
     for (int i = 1; i < timeWidgets.length; i += 2) {
-      timeWidgets.insert(i, Text(' | ', style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),));
+      timeWidgets.insert(
+          i,
+          Text(
+            ' | ',
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),
+          ));
     }
     return Row(
       children: timeWidgets,
