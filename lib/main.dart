@@ -308,8 +308,6 @@ class LineNumberWidget extends StatelessWidget {
       default:
         return Colors.purple;
     }
-
-    return Colors.red;
   }
 
   @override
@@ -324,7 +322,7 @@ class LineNumberWidget extends StatelessWidget {
     return Container(
       color: getColor(),
       child: Text(
-        ' ${station.departures[index].label} ' ?? "",
+        ' ${station.departures[index].label} ',
         style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white),
       ),
     );
