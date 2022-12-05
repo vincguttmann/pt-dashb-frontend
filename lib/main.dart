@@ -71,7 +71,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3 * 1.75 - 1,
+            height: MediaQuery.of(context).size.height / 3 * 2 - 1,
             width: MediaQuery.of(context).size.width,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +103,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                          height: MediaQuery.of(context).size.height / 3 * 1.75 / 2,
+                          height: MediaQuery.of(context).size.height / 3 * 1.58 / 2,
                           width: MediaQuery.of(context).size.width / 3 - 4,
                           child: StationWidget(station: rootdata.stations[2])),
                       const Divider(
@@ -114,7 +114,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                         height: 2,
                       ),
                       SizedBox(
-                          height: MediaQuery.of(context).size.height / 3 * 1.75 / 2 - 3,
+                          height: MediaQuery.of(context).size.height / 3 * 1.75 / 2,
                           width: MediaQuery.of(context).size.width / 3 - 4,
                           child: StationWidget(station: rootdata.stations[3])),
                     ],
@@ -132,7 +132,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 3 * 1.25 - 1,
+            height: MediaQuery.of(context).size.height / 3 * 1 - 1,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -177,6 +177,8 @@ class StationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable(
+      dataRowHeight: 65.0,
+      headingRowHeight: 70,
       columns: <DataColumn>[
         DataColumn(
           label: Center(
@@ -198,12 +200,17 @@ class StationWidget extends StatelessWidget {
           ),
         ),
         DataColumn(
-          label: Center(
+          label: Expanded(
             child: Text(
-              'min',
-              style: Theme.of(context).textTheme.headline5,
+              'in ... min',
+              textAlign: TextAlign.start,
+              style: Theme.of(context).textTheme.headline5!.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
+          // label: Align(
+          //   alignment: Alignment.centerRight,
+
+          // ),
         ),
       ],
       rows: getList(context, station),
@@ -223,10 +230,13 @@ List<DataRow> getList(BuildContext context, Station station) {
         return null; // Use default value for other states and odd rows.
       }),
       cells: <DataCell>[
-        DataCell(Text(
-          station.departures[index].label ?? "",
-          style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),
-        )),
+        DataCell(
+          // Image.asset()
+          Text(
+            station.departures[index].label ?? "",
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),
+          ),
+        ),
         DataCell(Text(
           station.departures[index].destination,
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),
@@ -236,7 +246,8 @@ List<DataRow> getList(BuildContext context, Station station) {
       ],
     ),
   );
-  data.add(const DataRow(cells: <DataCell>[DataCell(Text("")), DataCell(Text("")), DataCell(Text(""))]));
+  data.add(
+      const DataRow(cells: <DataCell>[DataCell(Text("")), DataCell(Text("")), DataCell(Text(""))]));
   return data;
 }
 

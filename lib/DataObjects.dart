@@ -37,7 +37,7 @@ class Station {
     required this.departures,
   });
 
-  factory Station.fromJson(Map<String, dynamic> json, String name) {
+  factory Station.fromJson(List json, String name) {
     List<Departure> departures = [];
     print(json);
     for (Map<String, dynamic> departure in (json as List)) {
