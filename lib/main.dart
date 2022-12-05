@@ -24,7 +24,9 @@ Stream<RootData> fetchData() async* {
   }
 }
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -42,10 +44,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fetch Data Example',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
+      title: 'Dashboard',
+      theme: ThemeData(primarySwatch: Colors.indigo, fontFamily: 'AtkinsonHyperlegible'),
       home: Scaffold(
         body: StreamBuilder<RootData>(
           stream: fetchData(),
