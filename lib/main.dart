@@ -231,11 +231,7 @@ List<DataRow> getList(BuildContext context, Station station) {
       }),
       cells: <DataCell>[
         DataCell(
-          // Image.asset()
-          Text(
-            station.departures[index].label ?? "",
-            style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.black),
-          ),
+          LineNumberWidget(station: station, index: index),
         ),
         DataCell(Text(
           station.departures[index].destination,
@@ -279,6 +275,58 @@ class DepartureTimeWidget extends StatelessWidget {
     }
     return Row(
       children: timeWidgets,
+    );
+  }
+}
+
+class LineNumberWidget extends StatelessWidget {
+  const LineNumberWidget({Key? key, required this.station, required this.index}) : super(key: key);
+  final Station station;
+  final int index;
+
+  Color getColor() {
+    switch (station.departures[index].transportType) {
+      case 'sub':
+        switch (station.departures[index].label) {
+          case 'U2':
+            return const Color.fromARGB(255, 194, 8, 49);
+          case 'U3':
+            return const Color.fromARGB(255, 236, 103, 38);
+          default:
+            return Colors.green;
+        }
+      case 'xbus':
+        return const Color.fromARGB(255, 77, 147, 128);
+      case 'bus':
+        if (station.departures[index].label!.length == 2) {
+          return const Color.fromARGB(255, 236, 103, 38);
+        } else {
+          return const Color.fromARGB(255, 0, 83, 102);
+        }
+      case 'tram':
+        return const Color.fromARGB(255, 247, 166, 0);
+      default:
+        return Colors.purple;
+    }
+
+    return Colors.red;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (station.departures[index].transportType == 'bmwbus') {
+      return SizedBox(
+        height: 55,
+        width: 55,
+        child: Image.asset('bmwbus.png'),
+      );
+    }
+    return Container(
+      color: getColor(),
+      child: Text(
+        ' ${station.departures[index].label} ' ?? "",
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.white),
+      ),
     );
   }
 }
