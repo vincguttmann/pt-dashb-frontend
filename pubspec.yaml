@@ -66,12 +66,12 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-assets:
-  - assets/station.json
-  - assets/tram.png
-  - assets/bus.png
-  - assets/sub.png
-  - assets/bmwbus.png
+  assets:
+    - assets/station.json
+    - assets/tram.png
+    - assets/bus.png
+    - assets/sub.png
+    - assets/bmwbus.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:http/http.dart';
 
 import 'DataObjects.dart';
@@ -7,20 +8,19 @@ import 'package:http/http.dart' as http;
 
 Stream<RootData> fetchData() async* {
   while (true) {
-    String githubURL =
-        'https://raw.githubusercontent.com/vincguttmann/pt-dashb-frontend/master/assets/station.json';
+    String githubURL = 'http://yeet.local/yeet.json';
     Response response = await http.get(Uri.parse(githubURL));
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      yield RootData.fromString(response.body);
+      yield RootData.fromString(utf8.decode(response.bodyBytes));
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw Exception('Failed to load data');
     }
-    await Future.delayed(const Duration(seconds: 45));
+    await Future.delayed(const Duration(seconds: 20));
   }
 }
 
@@ -67,102 +67,143 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
   if (rootdata.stations.length == 7) {
     return MediaQuery(
       data: const MediaQueryData(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 3 * 2 - 1,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 3 * 2 - 1 + 65,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      child: StationWidget(station: rootdata.stations[0])),
+                  const VerticalDivider(
+                    indent: 0,
+                    endIndent: 0,
+                    width: 2,
+                    thickness: 2,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
                     width: MediaQuery.of(context).size.width / 3 - 4,
-                    child: StationWidget(station: rootdata.stations[0])),
-                const VerticalDivider(
-                  indent: 0,
-                  endIndent: 0,
-                  width: 2,
-                  thickness: 2,
-                  color: Colors.grey,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3 - 4,
-                  child: StationWidget(station: rootdata.stations[1]),
-                ),
-                const VerticalDivider(
-                  indent: 0,
-                  endIndent: 0,
-                  width: 2,
-                  thickness: 2,
-                  color: Colors.grey,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3 - 4,
-                  child: Column(
+                    child: StationWidget(station: rootdata.stations[1]),
+                  ),
+                  const VerticalDivider(
+                    indent: 0,
+                    endIndent: 0,
+                    width: 2,
+                    thickness: 2,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 3 - 4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 3 * 2.155 / 2 + 2 * 65,
+                            width: MediaQuery.of(context).size.width / 3 - 4,
+                            child: StationWidget(station: rootdata.stations[2])),
+                        const Divider(
+                          endIndent: 0,
+                          indent: 0,
+                          color: Colors.grey,
+                          thickness: 2,
+                          height: 2,
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height / 3 * 1.75 / 2,
+                            width: MediaQuery.of(context).size.width / 3 - 4,
+                            child: StationWidget(station: rootdata.stations[3])),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const Divider(
+              endIndent: 0,
+              indent: 0,
+              color: Colors.grey,
+              thickness: 2,
+              height: 2,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+
+              ///@TODO: Fix!
+              height: MediaQuery.of(context).size.height / 3 * 1 - 67 - 65,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      child: StationWidget(station: rootdata.stations[4])),
+                  const VerticalDivider(
+                    indent: 0,
+                    endIndent: 0,
+                    width: 2,
+                    thickness: 2,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      child: StationWidget(station: rootdata.stations[5])),
+                  const VerticalDivider(
+                    indent: 0,
+                    endIndent: 0,
+                    width: 2,
+                    thickness: 2,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      child: StationWidget(station: rootdata.stations[6])),
+                ],
+              ),
+            ),
+            const Divider(
+              endIndent: 0,
+              indent: 0,
+              color: Colors.grey,
+              thickness: 2,
+              height: 2,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16.0, 0, 0, 0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height / 3 * 1.58 / 2,
-                          width: MediaQuery.of(context).size.width / 3 - 4,
-                          child: StationWidget(station: rootdata.stations[2])),
-                      const Divider(
-                        endIndent: 0,
-                        indent: 0,
-                        color: Colors.grey,
-                        thickness: 2,
-                        height: 2,
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height / 3 * 1.75 / 2,
-                          width: MediaQuery.of(context).size.width / 3 - 4,
-                          child: StationWidget(station: rootdata.stations[3])),
+                      Text(
+                          'Die Abfahrtszeit ist in Minuten ab jetzt angegeben. Bei Verspätungen ist die Abfahrtszeit ',
+                          style: Theme.of(context).textTheme.headline5!.copyWith(fontSize: 25.0)),
+                      Text(
+                        'rot',
+                        style: Theme.of(context).textTheme.headline5!.copyWith(
+                            color: Colors.red, fontSize: 25.0, fontWeight: FontWeight.bold),
+                      )
                     ],
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 4.0),
+                  child: Text(
+                      '${DateTime.now().hour}:${DateTime.now().minute.toString().padLeft(2, '0')}',
+                      style: Theme.of(context).textTheme.headline3),
                 )
               ],
-            ),
-          ),
-          const Divider(
-            endIndent: 0,
-            indent: 0,
-            color: Colors.grey,
-            thickness: 2,
-            height: 2,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 3 * 1 - 1,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width / 3 - 4,
-                    child: StationWidget(station: rootdata.stations[4])),
-                const VerticalDivider(
-                  indent: 0,
-                  endIndent: 0,
-                  width: 2,
-                  thickness: 2,
-                  color: Colors.grey,
-                ),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width / 3 - 4,
-                    child: StationWidget(station: rootdata.stations[5])),
-                const VerticalDivider(
-                  indent: 0,
-                  endIndent: 0,
-                  width: 2,
-                  thickness: 2,
-                  color: Colors.grey,
-                ),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width / 3 - 4,
-                    child: StationWidget(station: rootdata.stations[6])),
-              ],
-            ),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -286,7 +327,7 @@ class LineNumberWidget extends StatelessWidget {
 
   Color getColor() {
     switch (station.departures[index].transportType) {
-      case 'sub':
+      case 'UBAHN':
         switch (station.departures[index].label) {
           case 'U2':
             return const Color.fromARGB(255, 194, 8, 49);
@@ -295,16 +336,14 @@ class LineNumberWidget extends StatelessWidget {
           default:
             return Colors.green;
         }
-      case 'xbus':
-        return const Color.fromARGB(255, 77, 147, 128);
-      case 'bus':
-        if (station.departures[index].label!.length == 2) {
-          return const Color.fromARGB(255, 236, 103, 38);
+      case 'BUS':
+        if (station.departures[index].label!.startsWith('X')) {
+          return const Color.fromARGB(255, 77, 147, 128);
         } else {
           return const Color.fromARGB(255, 0, 83, 102);
         }
-      case 'tram':
-        return const Color.fromARGB(255, 247, 166, 0);
+      case 'TRAM':
+        return const Color.fromARGB(255, 216, 32, 32);
       default:
         return Colors.purple;
     }
