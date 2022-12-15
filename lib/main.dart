@@ -18,9 +18,8 @@ Stream<RootData> fetchData() async* {
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load data');
     }
-    await Future.delayed(const Duration(seconds: 20));
+    await Future.delayed(const Duration(seconds: 15));
   }
 }
 
