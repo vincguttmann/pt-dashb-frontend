@@ -78,7 +78,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      width: MediaQuery.of(context).size.width / 3 - 2,
                       child: StationWidget(station: rootdata.stations[0])),
                   const VerticalDivider(
                     indent: 0,
@@ -88,7 +88,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                     color: Colors.grey,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 3 - 4,
+                    width: MediaQuery.of(context).size.width / 3,
                     child: StationWidget(station: rootdata.stations[1]),
                   ),
                   const VerticalDivider(
@@ -99,7 +99,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                     color: Colors.grey,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 3 - 4,
+                    width: MediaQuery.of(context).size.width / 3 - 2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -133,14 +133,12 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
-
-              ///@TODO: Fix!
               height: MediaQuery.of(context).size.height / 3 * 1 - 67 - 65,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      width: MediaQuery.of(context).size.width / 3 - 2,
                       child: StationWidget(station: rootdata.stations[4])),
                   const VerticalDivider(
                     indent: 0,
@@ -150,7 +148,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                     color: Colors.grey,
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      width: MediaQuery.of(context).size.width / 3,
                       child: StationWidget(station: rootdata.stations[5])),
                   const VerticalDivider(
                     indent: 0,
@@ -160,7 +158,7 @@ Widget buildLayout(BuildContext context, RootData rootdata) {
                     color: Colors.grey,
                   ),
                   SizedBox(
-                      width: MediaQuery.of(context).size.width / 3 - 4,
+                      width: MediaQuery.of(context).size.width / 3 - 2,
                       child: StationWidget(station: rootdata.stations[6])),
                 ],
               ),
