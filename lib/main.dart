@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 Stream<RootData> fetchData() async* {
   while (true) {
-    String githubURL = 'http://yeet.local/yeet.json';
+    String githubURL = 'https://raw.githubusercontent.com/vincguttmann/pt-dashb-frontend/master/assets/yeet.json';
     Response response = await http.get(Uri.parse(githubURL));
 
     if (response.statusCode == 200) {
